@@ -1,15 +1,16 @@
 class Taskforce < Formula
   desc "Taskforce dashboard and MCP CLI"
-  homepage "https://github.com/Stratnexus/taskforce"
-  url "https://registry.npmjs.org/@taskforcehq/taskforce/-/taskforce-0.3.168.tgz"
-  sha256 "853128ac948ec8a51d42c95faecc85907455274d7d9e2f094baf1ac3c34d2f46"
-  license "MIT"
+  homepage "https://github.com/taskforcehq/taskforce"
+  url "https://registry.npmjs.org/@taskforcehq/taskforce/-/taskforce-0.3.326.tgz"
+  sha256 "8b4d1b870d70a14d230382c59fd207fa0b6ccd2ff10af3d09fc8683e805e805c"
+  license :cannot_represent
 
-  depends_on "node"
+  depends_on "node@22"
 
   def install
     system "npm", "install", *std_npm_args
-    bin.install_symlink libexec/"bin/taskforce"
+    (bin/"taskforce").write_env_script libexec/"bin/taskforce",
+      PATH: "#{Formula["node@22"].opt_bin}:$PATH"
   end
 
   test do
