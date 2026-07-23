@@ -9,11 +9,18 @@ class Taskforce < Formula
 
   def install
     system "npm", "install", *std_npm_args
+    cd libexec/"lib/node_modules/@taskforcehq/taskforce" do
+      system "npm", "rebuild", "better-sqlite3", "--build-from-source"
+    end
     (bin/"taskforce").write_env_script libexec/"bin/taskforce",
       PATH: "#{Formula["node@22"].opt_bin}:$PATH"
   end
 
   test do
     assert_match "Taskforce CLI", shell_output("#{bin}/taskforce help")
+    cd libexec/"lib/node_modules/@taskforcehq/taskforce" do
+      system Formula["node@22"].opt_bin/"node", "-e",
+        "const Database = require('better-sqlite3'); new Database(':memory:').close();"
+    end
   end
 end
