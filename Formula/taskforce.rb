@@ -6,10 +6,12 @@ class Taskforce < Formula
   license :cannot_represent
 
   depends_on "node@22"
+  depends_on "python@3.13" => :build
 
   def install
     system "npm", "install", *std_npm_args
     cd libexec/"lib/node_modules/@taskforcehq/taskforce" do
+      ENV["PYTHON"] = (Formula["python@3.13"].opt_bin/"python3.13").to_s
       system "npm", "rebuild", "better-sqlite3", "--build-from-source"
     end
     (bin/"taskforce").write_env_script libexec/"bin/taskforce",
