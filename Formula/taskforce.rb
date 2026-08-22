@@ -1,8 +1,8 @@
 class Taskforce < Formula
   desc "Taskforce dashboard and MCP CLI"
   homepage "https://github.com/taskforcehq/taskforce"
-  url "https://registry.npmjs.org/@taskforcehq/taskforce/-/taskforce-0.3.329.tgz"
-  sha256 "d032fdb664f0f9544d0110f1402a8bc17928c5b024feecbe3a4844c451bf811d"
+  url "https://registry.npmjs.org/@taskforcehq/taskforce/-/taskforce-0.3.330.tgz"
+  sha256 "caeeb5da7d0aaced72ceb2b5366324c1ebc117e065bcc7c726f2e40e73a5d600"
   license :cannot_represent
 
   depends_on "node@22"
